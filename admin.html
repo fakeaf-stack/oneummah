@@ -151,8 +151,37 @@
   .preview-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+  }
+
+  /* Modal for full-size preview */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 24px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-inner {
+    max-width: 1200px;
+    width: 100%;
+    max-height: 90vh;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-inner img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
   }
   .preview-empty {
     border-radius: 16px;
@@ -327,6 +356,13 @@ CREATE POLICY allow_insert_product_images_anon ON public.product_images
         </div>
       </section>
 
+      <!-- Full-size image modal -->
+      <div id="imageModal" class="modal-overlay" role="dialog" aria-hidden="true">
+        <div class="modal-inner" id="modalInner">
+          <img id="modalImg" src="" alt="Full preview">
+        </div>
+      </div>
+
       <aside class="sidebar-note">
         <div class="note-card">
           <h3>What gets saved</h3>
@@ -355,15 +391,36 @@ CREATE POLICY allow_insert_product_images_anon ON public.product_images
   imagesInput.addEventListener('change', function () {
     const files = Array.from(imagesInput.files || [])
 
+    // revoke previous object URLs to avoid leaks
+    if (window._previewUrls && window._previewUrls.length) {
+      window._previewUrls.forEach(function (u) { try { URL.revokeObjectURL(u) } catch (e) {} })
+    }
+    window._previewUrls = []
+
     if (!files.length) {
       previewGrid.innerHTML = '<div class="preview-empty">Select one or more product images to preview them here before upload.</div>'
       return
     }
 
-    previewGrid.innerHTML = files.map(function (file) {
+    // create previews and attach click handlers to open modal
+    previewGrid.innerHTML = ''
+    files.forEach(function (file) {
       const objectUrl = URL.createObjectURL(file)
-      return '<div class="preview-item"><img src="' + objectUrl + '" alt="' + file.name.replace(/"/g, '&quot;') + '"></div>'
-    }).join('')
+      window._previewUrls.push(objectUrl)
+      const div = document.createElement('div')
+      div.className = 'preview-item'
+      const img = document.createElement('img')
+      img.src = objectUrl
+      img.alt = file.name
+      img.setAttribute('data-full', objectUrl)
+      img.style.cursor = 'pointer'
+      img.addEventListener('click', function (ev) {
+        ev.stopPropagation()
+        openImageModal(this.getAttribute('data-full'))
+      })
+      div.appendChild(img)
+      previewGrid.appendChild(div)
+    })
   })
 
   resetBtn.addEventListener('click', clearForm)
@@ -475,6 +532,33 @@ CREATE POLICY allow_insert_product_images_anon ON public.product_images
     statusBox.style.display = 'none'
     statusBox.className = ''
   }
+
+  // modal logic
+  const imageModal = document.getElementById('imageModal')
+  const modalImg = document.getElementById('modalImg')
+
+  function openImageModal(url) {
+    if (!url) return
+    modalImg.src = url
+    imageModal.classList.add('open')
+    imageModal.setAttribute('aria-hidden', 'false')
+    document.body.style.overflow = 'hidden'
+  }
+  function closeImageModal() {
+    imageModal.classList.remove('open')
+    imageModal.setAttribute('aria-hidden', 'true')
+    modalImg.src = ''
+    document.body.style.overflow = ''
+  }
+
+  imageModal.addEventListener('click', function (e) {
+    if (e.target === imageModal || e.target === modalImg) {
+      closeImageModal()
+    }
+  })
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeImageModal()
+  })
 
   // RLS helper buttons
   const copySqlBtn = document.getElementById('copySqlBtn')
