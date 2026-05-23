@@ -167,25 +167,14 @@
     .catalog-filters { padding: 20px 14px; }
   }
 </style>
+<link rel="stylesheet" href="shared-shell.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
+<script src="shared-shell.js"></script>
 </head>
 <body>
-<!-- Announcement Bar removed -->
-<header>
-  <div class="header-inner">
-    <nav class="nav-left">
-      <a href="ummahrise-clone.html">Home</a>
-      <a href="catalog.html">Catalog</a>
-      <a href="contact.html">Contact</a>
-      <a href="track.html">Track Your Order</a>
-    </nav>
-    <a class="logo" href="ummahrise-clone.html">ONEUMMAH</a>
-    <nav class="nav-right">
-      <a href="contact.html">Support</a>
-    </nav>
-  </div>
-</header>
+
+<div id="sharedHeader"></div>
 
 <section class="page-hero">
   <h1>Catalog</h1>
@@ -207,5 +196,7 @@
     <div class="meta"><p class="name">Beta Tee | Placeholder</p><p class="price"><span class="old">EUR 0.00</span><span class="new">EUR 14.99</span></p></div>
   </article>
 </section>
+
+<div id="sharedFooter"></div>
 </body>
 </html>

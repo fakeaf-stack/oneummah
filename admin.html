@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
+<link rel="stylesheet" href="shared-shell.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   :root {
@@ -261,8 +262,10 @@
     .preview-grid { grid-template-columns: 1fr; }
   }
 </style>
+<script src="shared-shell.js"></script>
 </head>
 <body>
+  <div id="sharedHeader"></div>
   <div class="shell">
     <div class="hero">
       <div>
@@ -379,6 +382,8 @@ CREATE POLICY allow_insert_product_images_anon ON public.product_images
       </aside>
     </div>
   </div>
+
+  <div id="sharedFooter"></div>
 
 <script>
   const previewGrid = document.getElementById('previewGrid')
