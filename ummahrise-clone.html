@@ -427,6 +427,24 @@
     font-weight: 700;
     color: var(--black);
   }
+  .product-meta {
+    margin-top: 8px;
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--mid-gray);
+    letter-spacing: 0.03em;
+    text-transform: none;
+  }
+  .empty-state {
+    grid-column: 1 / -1;
+    padding: 48px 24px;
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--mid-gray);
+    border: 1px dashed var(--light-gray);
+    background: var(--off-white);
+  }
 
   /* ── VIEW ALL BTN ── */
   .view-all-wrap {
@@ -1118,6 +1136,8 @@
     line-height: 1;
   }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
 </head>
 <body>
 
@@ -1574,6 +1594,10 @@
 
   // Catalog filter
   function setFilter(btn) {
+    if (window.ONEUMMAH && typeof window.ONEUMMAH.applyCatalogFilter === 'function') {
+      window.ONEUMMAH.applyCatalogFilter(btn);
+      return;
+    }
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
   }
