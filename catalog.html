@@ -98,12 +98,13 @@
   .filter-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
 
   .catalog-grid {
-    max-width: 1400px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 24px 70px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(2, minmax(260px, 360px));
+    gap: 24px;
+    justify-content: center;
   }
   .card { border: 1px solid var(--light-gray); background: var(--white); }
   .thumb {
@@ -173,12 +174,14 @@
 </section>
 
 <section class="catalog-grid">
-  <article class="card"><div class="thumb"><span class="thumb-text">TAWAKKUL</span></div><div class="meta"><p class="name">TAWAKKUL T-shirt | Oversized</p><p class="price"><span class="old">EUR 32,99</span><span class="new">EUR 29,99</span></p></div></article>
-  <article class="card"><div class="thumb"><span class="thumb-text">WARRIOR</span></div><div class="meta"><p class="name">WARRIOR T-shirt | Oversized</p><p class="price"><span class="old">EUR 32,99</span><span class="new">EUR 29,99</span></p></div></article>
-  <article class="card"><div class="thumb"><span class="thumb-text">RISE</span></div><div class="meta"><p class="name">RISE T-shirt | Oversized+</p><p class="price"><span class="old">EUR 34,99</span><span class="new">EUR 32,99</span></p></div></article>
-  <article class="card"><div class="thumb"><span class="thumb-text">ISLAM</span></div><div class="meta"><p class="name">ISLAM T-shirt | Oversized</p><p class="price"><span class="old">EUR 32,99</span><span class="new">EUR 29,99</span></p></div></article>
-  <article class="card"><div class="thumb"><span class="thumb-text">ISLAM HOODIE</span></div><div class="meta"><p class="name">ISLAM Hoodie | Premium Oversized</p><p class="price"><span class="old">EUR 64,99</span><span class="new">EUR 49,99</span></p></div></article>
-  <article class="card"><div class="thumb"><span class="thumb-text">UMMAH HOODIE</span></div><div class="meta"><p class="name">UMMAH Hoodie | Premium Oversized</p><p class="price"><span class="old">EUR 64,99</span><span class="new">EUR 49,99</span></p></div></article>
+  <article class="card">
+    <div class="thumb"><span class="thumb-text">PRODUCT ALPHA</span></div>
+    <div class="meta"><p class="name">Alpha Tee | Placeholder</p><p class="price"><span class="old">EUR 0.00</span><span class="new">EUR 9.99</span></p></div>
+  </article>
+  <article class="card">
+    <div class="thumb"><span class="thumb-text">PRODUCT BETA</span></div>
+    <div class="meta"><p class="name">Beta Tee | Placeholder</p><p class="price"><span class="old">EUR 0.00</span><span class="new">EUR 14.99</span></p></div>
+  </article>
 </section>
 </body>
 </html>
