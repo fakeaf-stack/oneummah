@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Order | UMMAHRISE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #000;
+    --white: #fff;
+    --off-white: #f5f5f5;
+    --light-gray: #e8e8e8;
+    --mid-gray: #999;
+    --accent: #c8a96e;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+  }
+  body { font-family: var(--font-body); color: var(--black); background: var(--white); }
+  a { color: inherit; text-decoration: none; }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--white);
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 64px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-left { display: flex; align-items: center; gap: 24px; }
+  .nav-left a {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+  .logo {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 0.08em;
+  }
+
+  .page-hero {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 90px 20px 56px;
+  }
+  .page-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 8vw, 100px);
+    letter-spacing: 0.06em;
+  }
+  .page-hero p {
+    margin-top: 12px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .track-wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 52px 24px 90px;
+  }
+  .intro {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #444;
+    letter-spacing: 0.03em;
+    margin-bottom: 30px;
+  }
+  .field { margin-bottom: 12px; }
+  input {
+    width: 100%;
+    border: 1.5px solid var(--light-gray);
+    font-family: var(--font-body);
+    font-size: 13px;
+    padding: 13px 14px;
+    text-align: center;
+    letter-spacing: 0.08em;
+    outline: none;
+  }
+  input:focus { border-color: var(--black); }
+  .submit {
+    width: 100%;
+    border: none;
+    background: var(--black);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 16px;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+  .submit:hover { background: var(--accent); }
+  .status {
+    display: none;
+    margin-top: 22px;
+    background: var(--off-white);
+    padding: 16px;
+    text-align: left;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .status.show { display: block; }
+
+  @media (max-width: 900px) {
+    .logo { font-size: 22px; }
+  }
+  @media (max-width: 600px) {
+    .header-inner { padding: 0 14px; }
+    .nav-left { gap: 12px; }
+    .nav-left a { font-size: 10px; letter-spacing: 0.08em; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <nav class="nav-left">
+      <a href="ummahrise-clone.html">Home</a>
+      <a href="catalog.html">Catalog</a>
+      <a href="contact.html">Contact</a>
+      <a href="track.html">Track Your Order</a>
+    </nav>
+    <a class="logo" href="ummahrise-clone.html">UMMAHRISE</a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <h1>Track Your Order</h1>
+  <p>Real-time order updates</p>
+</section>
+
+<section class="track-wrap">
+  <p class="intro">Enter your order number and email address to check your latest shipping status.</p>
+  <form id="trackForm">
+    <div class="field"><input id="order" type="text" placeholder="ORDER NUMBER (example: #1234)" required></div>
+    <div class="field"><input id="email" type="email" placeholder="EMAIL ADDRESS" required></div>
+    <button class="submit" type="submit">Track Order</button>
+  </form>
+  <div id="status" class="status"></div>
+</section>
+
+<script>
+  document.getElementById('trackForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    var order = document.getElementById('order').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var status = document.getElementById('status');
+    status.innerHTML = '<strong>Order:</strong> ' + order + '<br><strong>Email:</strong> ' + email + '<br><strong>Status:</strong> In transit. Expected delivery in 2-4 business days.';
+    status.classList.add('show');
+  });
+</script>
+</body>
+</html>

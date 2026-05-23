@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UMMAHRISE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #000000;
+    --white: #ffffff;
+    --off-white: #f5f5f5;
+    --light-gray: #e8e8e8;
+    --mid-gray: #999;
+    --dark-gray: #333;
+    --accent: #c8a96e;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--white); color: var(--black); overflow-x: hidden; }
+
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  ul { list-style: none; }
+  button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+  /* ── ANNOUNCEMENT BAR ── */
+  .announcement-bar {
+    background: var(--black);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-align: center;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .announcement-track {
+    display: inline-flex;
+    gap: 80px;
+    animation: ticker 18s linear infinite;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 64px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .nav-left {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  .nav-left a {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--black);
+    transition: color 0.2s;
+    text-transform: uppercase;
+  }
+  .nav-left a:hover { color: var(--mid-gray); }
+  .logo {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .nav-right a {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-right a:hover { color: var(--mid-gray); }
+  .cart-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .cart-count {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .search-icon, .cart-icon {
+    width: 18px;
+    height: 18px;
+  }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 22px; height: 2px; background: var(--black); display: block; transition: 0.3s; }
+
+  /* ── HERO VIDEO SECTION ── */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 40%, #0f0f0f 100%);
+  }
+  /* Simulated video texture */
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% 60%, rgba(200,169,110,0.08) 0%, transparent 70%),
+      url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    background-size: cover, 200px 200px;
+  }
+  /* Decorative lines suggesting athletic motion */
+  .hero-lines {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .hero-lines::before {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -5%;
+    width: 55%;
+    height: 120%;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.025) 40%, rgba(255,255,255,0.025) 41%, transparent 41%);
+  }
+  .hero-lines::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    right: -5%;
+    width: 45%;
+    height: 120%;
+    background: linear-gradient(255deg, transparent 38%, rgba(200,169,110,0.04) 38%, rgba(200,169,110,0.04) 39%, transparent 39%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--white);
+    padding: 0 20px;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(64px, 12vw, 140px);
+    line-height: 0.88;
+    letter-spacing: 0.04em;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.7s forwards;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: var(--white);
+    color: var(--black);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 16px 48px;
+    transition: background 0.25s, color 0.25s, transform 0.2s;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.9s forwards;
+  }
+  .hero-cta:hover {
+    background: var(--accent);
+    color: var(--white);
+    transform: translateY(-2px);
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.4);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: fadeIn 1s 1.5s both;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    animation: scrollDown 1.8s 1.5s ease-in-out infinite;
+  }
+  @keyframes scrollDown {
+    0% { top: -100%; }
+    100% { top: 100%; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ── COLLECTION ── */
+  .section-header {
+    text-align: center;
+    padding: 80px 40px 40px;
+  }
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6vw, 72px);
+    letter-spacing: 0.06em;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    padding: 0 2px 2px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .product-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--off-white);
+    aspect-ratio: 3/4;
+  }
+  .product-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .product-card:hover .product-thumb {
+    transform: scale(1.04);
+  }
+  /* Placeholder gradient for product images */
+  .product-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .product-card:hover .product-placeholder {
+    transform: scale(1.04);
+  }
+  .ph-1 { background: linear-gradient(160deg, #1a1a1a 0%, #2c2c2c 100%); }
+  .ph-2 { background: linear-gradient(160deg, #0d0d0d 0%, #1f1f1f 100%); }
+  .ph-3 { background: linear-gradient(160deg, #111 0%, #252525 100%); }
+  .ph-4 { background: linear-gradient(160deg, #181818 0%, #2a2a2a 100%); }
+  .ph-5 { background: linear-gradient(160deg, #1c1c1c 0%, #2e2e2e 100%); }
+  .ph-6 { background: linear-gradient(160deg, #0e0e0e 0%, #202020 100%); }
+  .ph-7 { background: linear-gradient(160deg, #161616 0%, #282828 100%); }
+  .ph-8 { background: linear-gradient(160deg, #131313 0%, #242424 100%); }
+  .ph-9 { background: linear-gradient(160deg, #1a1a1a 0%, #2c2c2c 100%); }
+  .ph-10 { background: linear-gradient(160deg, #0f0f0f 0%, #1e1e1e 100%); }
+
+  .ph-text {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3vw, 48px);
+    color: rgba(255,255,255,0.12);
+    letter-spacing: 0.06em;
+    line-height: 1;
+    text-transform: uppercase;
+    word-break: break-all;
+  }
+
+  .product-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.35s;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+  }
+  .product-card:hover .product-overlay { opacity: 1; }
+  .add-to-cart-btn {
+    background: var(--white);
+    color: var(--black);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    width: 100%;
+    text-align: center;
+    transition: background 0.2s, color 0.2s;
+  }
+  .add-to-cart-btn:hover { background: var(--accent); color: var(--white); }
+
+  .product-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+  }
+
+  .product-info {
+    padding: 16px 20px 20px;
+    background: var(--white);
+  }
+  .product-name {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--black);
+  }
+  .product-prices {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .price-original {
+    font-size: 11px;
+    color: var(--mid-gray);
+    text-decoration: line-through;
+  }
+  .price-sale {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--black);
+  }
+
+  /* ── VIEW ALL BTN ── */
+  .view-all-wrap {
+    text-align: center;
+    padding: 48px 0 80px;
+  }
+  .view-all-btn {
+    display: inline-block;
+    border: 2px solid var(--black);
+    color: var(--black);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 16px 56px;
+    transition: background 0.25s, color 0.25s, transform 0.2s;
+  }
+  .view-all-btn:hover {
+    background: var(--black);
+    color: var(--white);
+    transform: translateY(-2px);
+  }
+
+  /* ── VIDEO / BRAND SECTION ── */
+  .brand-video-section {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 480px;
+    background: var(--black);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .brand-video-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #050505 0%, #111 50%, #0a0a0a 100%);
+  }
+  .brand-video-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 30% 50%, rgba(200,169,110,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 70% 50%, rgba(255,255,255,0.03) 0%, transparent 60%);
+  }
+  .play-btn {
+    position: relative;
+    z-index: 2;
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgba(255,255,255,0.6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .play-btn:hover { border-color: var(--accent); transform: scale(1.1); }
+  .play-btn::after {
+    content: '';
+    border-style: solid;
+    border-width: 12px 0 12px 22px;
+    border-color: transparent transparent transparent white;
+    margin-left: 4px;
+  }
+
+  /* ── DISCOVER SECTION ── */
+  .discover-section {
+    padding: 80px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .discover-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .discover-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: 0.06em;
+  }
+  .discover-header p {
+    font-size: 13px;
+    color: var(--mid-gray);
+    margin-top: 12px;
+    letter-spacing: 0.04em;
+  }
+  .discover-grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 360px);
+    gap: 24px;
+    justify-content: center;
+  }
+  .discover-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 4/5;
+    background: var(--off-white);
+  }
+  .discover-card-bg {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .discover-card:hover .discover-card-bg { transform: scale(1.05); }
+  .dc-1 { background: linear-gradient(160deg, #1a1a1a 0%, #111 60%, #0a0a0a 100%); }
+  .dc-2 { background: linear-gradient(160deg, #0f0f0f 0%, #181818 60%, #0d0d0d 100%); }
+  .dc-3 { background: linear-gradient(160deg, #161616 0%, #1e1e1e 60%, #121212 100%); }
+
+  .discover-card-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 36px 32px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+  }
+  .discover-icon {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 72px;
+    height: 72px;
+    opacity: 0.18;
+  }
+  .discover-card-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .discover-card-title {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3vw, 36px);
+    color: var(--white);
+    letter-spacing: 0.06em;
+  }
+  .discover-card-arrow {
+    margin-top: 16px;
+    width: 32px;
+    height: 2px;
+    background: var(--accent);
+    position: relative;
+    transition: width 0.3s;
+  }
+  .discover-card:hover .discover-card-arrow { width: 48px; }
+  .discover-card-arrow::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: -4px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 0 5px 8px;
+    border-color: transparent transparent transparent var(--accent);
+  }
+
+  /* ── REVIEWS ── */
+  .reviews-section {
+    background: var(--off-white);
+    padding: 80px 40px;
+  }
+  .reviews-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .reviews-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .reviews-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 56px);
+    letter-spacing: 0.06em;
+  }
+  .reviews-summary {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .stars-big {
+    font-size: 22px;
+    color: var(--black);
+    letter-spacing: 2px;
+  }
+  .review-score {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .review-badge {
+    background: var(--black);
+    color: var(--white);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+  }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .review-card {
+    background: var(--white);
+    padding: 28px 24px;
+    border: 1px solid var(--light-gray);
+  }
+  .review-stars { font-size: 14px; letter-spacing: 2px; margin-bottom: 12px; }
+  .review-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--dark-gray);
+    margin-bottom: 18px;
+  }
+  .review-author {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .review-date {
+    font-size: 10px;
+    color: var(--mid-gray);
+    margin-top: 3px;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 60px 40px 0;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer-brand-name {
+    font-family: var(--font-display);
+    font-size: 36px;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+  .footer-tagline {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+    margin-bottom: 24px;
+    max-width: 280px;
+  }
+  .footer-social a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 10px 16px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .footer-social a:hover { border-color: var(--accent); color: var(--accent); }
+  .footer-col-title {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+  .footer-col ul { display: flex; flex-direction: column; gap: 12px; }
+  .footer-col ul a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .footer-col ul a:hover { color: var(--white); }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.06em;
+  }
+  .footer-bottom-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .payment-icons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-left: auto;
+  }
+  .payment-icon {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.6);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .footer-links a {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--white); }
+
+  /* ── MODAL CART DRAWER ── */
+  .cart-drawer {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 420px;
+    height: 100vh;
+    background: var(--white);
+    z-index: 999;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+    transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-drawer.open { right: 0; }
+  .cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+  .cart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .cart-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.08em;
+  }
+  .cart-close {
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--black);
+    line-height: 1;
+    padding: 4px;
+    transition: color 0.2s;
+  }
+  .cart-close:hover { color: var(--mid-gray); }
+  .cart-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+    gap: 16px;
+  }
+  .cart-empty-icon { font-size: 48px; opacity: 0.2; }
+  .cart-empty p { font-size: 13px; color: var(--mid-gray); letter-spacing: 0.06em; }
+  .continue-shopping {
+    background: var(--black);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .continue-shopping:hover { background: var(--accent); }
+
+  /* ── PAGES (Catalog, Contact, Track) ── */
+  .page { display: none; }
+  .page.active { display: block; }
+  #home { display: block; }
+
+  .page-hero {
+    background: var(--black);
+    padding: 100px 40px 60px;
+    text-align: center;
+    color: var(--white);
+  }
+  .page-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 8vw, 100px);
+    letter-spacing: 0.06em;
+  }
+  .page-hero p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.12em;
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+
+  /* Catalog page */
+  .catalog-filters {
+    padding: 32px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border: 1.5px solid var(--light-gray);
+    color: var(--dark-gray);
+    transition: all 0.2s;
+    cursor: pointer;
+    background: var(--white);
+  }
+  .filter-btn.active, .filter-btn:hover {
+    border-color: var(--black);
+    background: var(--black);
+    color: var(--white);
+  }
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    padding: 0 2px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* Contact page */
+  .contact-section {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 64px 40px 100px;
+  }
+  .contact-intro {
+    font-size: 13px;
+    color: var(--mid-gray);
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+    margin-bottom: 48px;
+    text-align: center;
+  }
+  .form-group {
+    margin-bottom: 24px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: var(--dark-gray);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    border: 1.5px solid var(--light-gray);
+    background: var(--white);
+    font-family: var(--font-body);
+    font-size: 13px;
+    padding: 14px 16px;
+    color: var(--black);
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--black); }
+  .form-group textarea { height: 140px; resize: vertical; }
+  .form-submit {
+    width: 100%;
+    background: var(--black);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 18px;
+    cursor: pointer;
+    transition: background 0.25s;
+    border: none;
+    font-family: var(--font-body);
+  }
+  .form-submit:hover { background: var(--accent); }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 32px;
+    background: var(--off-white);
+    margin-top: 24px;
+  }
+  .form-success.show { display: block; }
+  .form-success p {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--dark-gray);
+  }
+
+  /* Track Order page */
+  .track-section {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 64px 40px 100px;
+    text-align: center;
+  }
+  .track-intro {
+    font-size: 13px;
+    color: var(--mid-gray);
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+    margin-bottom: 48px;
+  }
+  .track-form-group {
+    margin-bottom: 16px;
+  }
+  .track-form-group input {
+    width: 100%;
+    border: 1.5px solid var(--light-gray);
+    background: var(--white);
+    font-family: var(--font-body);
+    font-size: 13px;
+    padding: 14px 16px;
+    color: var(--black);
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: center;
+    letter-spacing: 0.08em;
+  }
+  .track-form-group input:focus { border-color: var(--black); }
+  .track-submit {
+    width: 100%;
+    background: var(--black);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 18px;
+    cursor: pointer;
+    transition: background 0.25s;
+    border: none;
+    font-family: var(--font-body);
+    margin-top: 8px;
+  }
+  .track-submit:hover { background: var(--accent); }
+  .track-info {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .track-feature {
+    padding: 24px 16px;
+    background: var(--off-white);
+    text-align: center;
+  }
+  .track-feature-icon { font-size: 28px; margin-bottom: 12px; }
+  .track-feature-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .track-feature-text { font-size: 11px; color: var(--mid-gray); line-height: 1.6; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .header-inner { padding: 0 20px; }
+    .nav-left { display: none; }
+    .nav-right .login-link { display: none; }
+    .hamburger { display: flex; }
+    .logo { font-size: 22px; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+    .discover-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .track-info { grid-template-columns: 1fr; }
+    .section-header { padding: 60px 20px 32px; }
+    .discover-section { padding: 60px 20px; }
+    .reviews-section { padding: 60px 20px; }
+    footer { padding: 48px 20px 0; }
+    .catalog-filters { padding: 24px 20px; }
+    .catalog-grid { padding: 0 2px 60px; }
+  }
+  @media (max-width: 600px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1px; }
+    .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .cart-drawer { width: 100%; right: -100%; }
+    .page-hero { padding: 80px 20px 40px; }
+    .contact-section { padding: 40px 20px 80px; }
+    .track-section { padding: 40px 20px 80px; }
+  }
+
+  /* Mobile nav */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--white);
+    z-index: 200;
+    flex-direction: column;
+    padding: 80px 40px 40px;
+    gap: 4px;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    font-family: var(--font-display);
+    font-size: 36px;
+    letter-spacing: 0.06em;
+    color: var(--black);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--light-gray);
+    transition: color 0.2s;
+  }
+  .mobile-nav a:hover { color: var(--accent); }
+  .mobile-nav-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--black);
+    background: none;
+    border: none;
+    font-family: inherit;
+    line-height: 1;
+  }
+</style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announcement-bar">
+  <div class="announcement-track">
+    <span>FREE SHIPPING | +79€ ORDERS (+50 COUNTRIES)</span>
+    <span>FREE SHIPPING | +79€ ORDERS (+50 COUNTRIES)</span>
+    <span>FREE SHIPPING | +79€ ORDERS (+50 COUNTRIES)</span>
+    <span>FREE SHIPPING | +79€ ORDERS (+50 COUNTRIES)</span>
+    <span>FREE SHIPPING | +79€ ORDERS (+50 COUNTRIES)</span>
+    <span>FREE SHIPPING | +79€ ORDERS (+50 COUNTRIES)</span>
+  </div>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <nav class="nav-left">
+      <a href="ummahrise-clone.html">HOME</a>
+      <a href="catalog.html">CATALOG</a>
+      <a href="contact.html">CONTACT</a>
+      <a href="track.html">TRACK YOUR ORDER</a>
+    </nav>
+    <a class="logo" href="ummahrise-clone.html">UMMAHRISE</a>
+    <div class="nav-right">
+      <a href="#" class="login-link">Log in</a>
+      <a href="#" onclick="openCart(); return false;" class="cart-btn">
+        <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        Cart
+        <span class="cart-count">0</span>
+      </a>
+      <div class="hamburger" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="toggleMobileNav()">✕</button>
+  <a href="ummahrise-clone.html">HOME</a>
+  <a href="catalog.html">CATALOG</a>
+  <a href="contact.html">CONTACT</a>
+  <a href="track.html">TRACK YOUR ORDER</a>
+</nav>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <span class="cart-title">CART</span>
+    <span class="cart-close" onclick="closeCart()">✕</span>
+  </div>
+  <div class="cart-empty">
+    <div class="cart-empty-icon">🛒</div>
+    <p>Your cart is currently empty.</p>
+    <button class="continue-shopping" onclick="window.location.href='catalog.html'">CONTINUE SHOPPING</button>
+  </div>
+</div>
+
+<!-- ========== HOME PAGE ========== -->
+<div id="home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Islamic Streetwear</p>
+      <h1 class="hero-title">MAKE<br><em>UMMAH</em><br>RISE AGAIN.</h1>
+      <p class="hero-sub">Premium clothing for the Muslim community</p>
+      <a href="catalog.html" class="hero-cta">SHOP NOW</a>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- Collection Section -->
+  <div class="section-header">
+    <p class="section-label">New Arrivals</p>
+    <h2 class="section-title">COLLECTION</h2>
+  </div>
+
+  <div class="products-grid">
+    <!-- Product 1 -->
+    <div class="product-card" onclick="window.location.href='catalog.html'">
+      <div class="product-placeholder ph-1"><span class="ph-text">TAWAKKUL</span></div>
+      <div class="product-badge">SALE</div>
+      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">TAWAKKUL T-shirt | Oversized [Short Cut]</p>
+      <div class="product-prices"><span class="price-original">€32,99</span><span class="price-sale">€29,99</span></div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card" onclick="window.location.href='catalog.html'">
+      <div class="product-placeholder ph-2"><span class="ph-text">WARRIOR</span></div>
+      <div class="product-badge">SALE</div>
+      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">WARRIOR T-shirt | Oversized [Short Cut]</p>
+      <div class="product-prices"><span class="price-original">€32,99</span><span class="price-sale">€29,99</span></div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card" onclick="window.location.href='catalog.html'">
+      <div class="product-placeholder ph-3"><span class="ph-text">TAWAKKUL</span></div>
+      <div class="product-badge">SALE</div>
+      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">TAWAKKUL T-shirt | Oversized+ [Long Cut]</p>
+      <div class="product-prices"><span class="price-original">€34,99</span><span class="price-sale">€32,99</span></div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product-card" onclick="window.location.href='catalog.html'">
+      <div class="product-placeholder ph-4"><span class="ph-text">WARRIOR</span></div>
+      <div class="product-badge">SALE</div>
+      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">WARRIOR T-shirt | Oversized+ [Long Cut]</p>
+      <div class="product-prices"><span class="price-original">€34,99</span><span class="price-sale">€32,99</span></div>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="product-card" onclick="window.location.href='catalog.html'">
+      <div class="product-placeholder ph-5"><span class="ph-text">RISE</span></div>
+      <div class="product-badge">SALE</div>
+      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">RISE T-shirt | Oversized [Short Cut]</p>
+      <div class="product-prices"><span class="price-original">€32,99</span><span class="price-sale">€29,99</span></div>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="product-card" onclick="window.location.href='catalog.html'">
+      <div class="product-placeholder ph-6"><span class="ph-text">ISLAM</span></div>
+      <div class="product-badge">SALE</div>
+      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">ISLAM T-shirt | Oversized [Short Cut]</p>
+      <div class="product-prices"><span class="price-original">€32,99</span><span class="price-sale">€29,99</span></div>
+    </div>
+
+    <!-- Product 7 -->
+    <div class="product-card" onclick="window.location.href='catalog.html'">
+      <div class="product-placeholder ph-7"><span class="ph-text">RISE</span></div>
+      <div class="product-badge">SALE</div>
+      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">RISE T-shirt | Oversized+ [Long Cut]</p>
+      <div class="product-prices"><span class="price-original">€34,99</span><span class="price-sale">€32,99</span></div>
+    </div>
+
+    <!-- Product 8 -->
+    <div class="product-card" onclick="window.location.href='catalog.html'">
+      <div class="product-placeholder ph-8"><span class="ph-text">ISLAM</span></div>
+      <div class="product-badge">SALE</div>
+      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">ISLAM T-shirt | Oversized+ [Long Cut]</p>
+      <div class="product-prices"><span class="price-original">€34,99</span><span class="price-sale">€32,99</span></div>
+    </div>
+
+    <!-- Product 9 -->
+    <div class="product-card" onclick="window.location.href='catalog.html'">
+      <div class="product-placeholder ph-9"><span class="ph-text">ISLAM HOODIE</span></div>
+      <div class="product-badge">SALE</div>
+      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">ISLAM Hoodie | Premium Oversized</p>
+      <div class="product-prices"><span class="price-original">€64,99</span><span class="price-sale">€49,99</span></div>
+    </div>
+
+    <!-- Product 10 -->
+    <div class="product-card" onclick="window.location.href='catalog.html'">
+      <div class="product-placeholder ph-10"><span class="ph-text">UMMAH HOODIE</span></div>
+      <div class="product-badge">SALE</div>
+      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">UMMAH Hoodie | Premium Oversized</p>
+      <div class="product-prices"><span class="price-original">€64,99</span><span class="price-sale">€49,99</span></div>
+    </div>
+  </div>
+
+  <div class="view-all-wrap">
+    <a href="catalog.html" class="view-all-btn">VIEW ALL PRODUCTS</a>
+  </div>
+
+  <!-- Brand Video Section -->
+  <section class="brand-video-section">
+    <div class="brand-video-bg"></div>
+    <button class="play-btn" title="Play video"></button>
+  </section>
+
+  <!-- Discover Section -->
+  <section class="discover-section">
+    <div class="discover-header">
+      <h2 class="section-title">DISCOVER</h2>
+      <p>Get answers to your questions about our products and services.</p>
+    </div>
+    <div class="discover-grid">
+      <div class="discover-card">
+        <div class="discover-card-bg dc-1"></div>
+        <svg class="discover-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="36" r="32" stroke="white" stroke-width="2"/>
+          <path d="M36 20 L36 36 L48 42" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="discover-card-inner">
+          <span class="discover-card-label">Our Story</span>
+          <h3 class="discover-card-title">WHO WE ARE</h3>
+          <div class="discover-card-arrow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section class="reviews-section">
+    <div class="reviews-inner">
+      <div class="reviews-header">
+        <h2 class="reviews-title">REVIEWS</h2>
+        <div class="reviews-summary">
+          <span class="stars-big">★★★★★</span>
+          <span class="review-score">5.00 (15)</span>
+          <span class="review-badge">VERIFIED</span>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+          <p class="review-author">John Doe</p>
+          <p class="review-date">May 2025</p>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+          <p class="review-author">Jane Doe</p>
+          <p class="review-date">April 2025</p>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."</p>
+          <p class="review-author">John Doe</p>
+          <p class="review-date">March 2025</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /home -->
+
+
+<!-- ========== CATALOG PAGE ========== -->
+<div id="catalog" class="page">
+  <div class="page-hero">
+    <h1>CATALOG</h1>
+    <p>All products — premium Islamic streetwear</p>
+  </div>
+  <div class="catalog-filters">
+    <button class="filter-btn active" onclick="setFilter(this)">ALL</button>
+    <button class="filter-btn" onclick="setFilter(this)">T-SHIRTS</button>
+    <button class="filter-btn" onclick="setFilter(this)">HOODIES</button>
+    <button class="filter-btn" onclick="setFilter(this)">OVERSIZED+</button>
+  </div>
+  <div class="catalog-grid">
+    <div><div class="product-card"><div class="product-placeholder ph-1" style="aspect-ratio:3/4"><span class="ph-text">TAWAKKUL</span></div><div class="product-badge">SALE</div><div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div></div><div class="product-info"><p class="product-name">TAWAKKUL T-shirt | Oversized [Short Cut]</p><div class="product-prices"><span class="price-original">€32,99</span><span class="price-sale">€29,99</span></div></div></div>
+    <div><div class="product-card"><div class="product-placeholder ph-2" style="aspect-ratio:3/4"><span class="ph-text">WARRIOR</span></div><div class="product-badge">SALE</div><div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div></div><div class="product-info"><p class="product-name">WARRIOR T-shirt | Oversized [Short Cut]</p><div class="product-prices"><span class="price-original">€32,99</span><span class="price-sale">€29,99</span></div></div></div>
+    <div><div class="product-card"><div class="product-placeholder ph-3" style="aspect-ratio:3/4"><span class="ph-text">TAWAKKUL+</span></div><div class="product-badge">SALE</div><div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div></div><div class="product-info"><p class="product-name">TAWAKKUL T-shirt | Oversized+ [Long Cut]</p><div class="product-prices"><span class="price-original">€34,99</span><span class="price-sale">€32,99</span></div></div></div>
+    <div><div class="product-card"><div class="product-placeholder ph-4" style="aspect-ratio:3/4"><span class="ph-text">WARRIOR+</span></div><div class="product-badge">SALE</div><div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div></div><div class="product-info"><p class="product-name">WARRIOR T-shirt | Oversized+ [Long Cut]</p><div class="product-prices"><span class="price-original">€34,99</span><span class="price-sale">€32,99</span></div></div></div>
+    <div><div class="product-card"><div class="product-placeholder ph-5" style="aspect-ratio:3/4"><span class="ph-text">RISE</span></div><div class="product-badge">SALE</div><div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div></div><div class="product-info"><p class="product-name">RISE T-shirt | Oversized [Short Cut]</p><div class="product-prices"><span class="price-original">€32,99</span><span class="price-sale">€29,99</span></div></div></div>
+    <div><div class="product-card"><div class="product-placeholder ph-6" style="aspect-ratio:3/4"><span class="ph-text">ISLAM</span></div><div class="product-badge">SALE</div><div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div></div><div class="product-info"><p class="product-name">ISLAM T-shirt | Oversized [Short Cut]</p><div class="product-prices"><span class="price-original">€32,99</span><span class="price-sale">€29,99</span></div></div></div>
+    <div><div class="product-card"><div class="product-placeholder ph-7" style="aspect-ratio:3/4"><span class="ph-text">RISE+</span></div><div class="product-badge">SALE</div><div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div></div><div class="product-info"><p class="product-name">RISE T-shirt | Oversized+ [Long Cut]</p><div class="product-prices"><span class="price-original">€34,99</span><span class="price-sale">€32,99</span></div></div></div>
+    <div><div class="product-card"><div class="product-placeholder ph-8" style="aspect-ratio:3/4"><span class="ph-text">ISLAM+</span></div><div class="product-badge">SALE</div><div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div></div><div class="product-info"><p class="product-name">ISLAM T-shirt | Oversized+ [Long Cut]</p><div class="product-prices"><span class="price-original">€34,99</span><span class="price-sale">€32,99</span></div></div></div>
+    <div><div class="product-card"><div class="product-placeholder ph-9" style="aspect-ratio:3/4"><span class="ph-text">ISLAM HOODIE</span></div><div class="product-badge">SALE</div><div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div></div><div class="product-info"><p class="product-name">ISLAM Hoodie | Premium Oversized</p><div class="product-prices"><span class="price-original">€64,99</span><span class="price-sale">€49,99</span></div></div></div>
+    <div><div class="product-card"><div class="product-placeholder ph-10" style="aspect-ratio:3/4"><span class="ph-text">UMMAH HOODIE</span></div><div class="product-badge">SALE</div><div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div></div><div class="product-info"><p class="product-name">UMMAH Hoodie | Premium Oversized</p><div class="product-prices"><span class="price-original">€64,99</span><span class="price-sale">€49,99</span></div></div></div>
+  </div>
+</div><!-- /catalog -->
+
+
+<!-- ========== CONTACT PAGE ========== -->
+<div id="contact" class="page">
+  <div class="page-hero">
+    <h1>CONTACT</h1>
+    <p>We're here to help</p>
+  </div>
+  <div class="contact-section">
+    <p class="contact-intro">Have a question about your order, sizing, or anything else? Fill in the form below and our team will get back to you as soon as possible.</p>
+    <form onsubmit="submitContact(event)">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Enter your full name" required>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label>Phone Number (optional)</label>
+        <input type="tel" placeholder="+1 (000) 000-0000">
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <select>
+          <option>Order inquiry</option>
+          <option>Return & refund</option>
+          <option>Sizing help</option>
+          <option>Wholesale / partnership</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Write your message here…" required></textarea>
+      </div>
+      <button type="submit" class="form-submit">SEND MESSAGE</button>
+    </form>
+    <div class="form-success" id="formSuccess">
+      <p>✓ Thank you! Your message has been sent. We'll reply within 24–48 hours.</p>
+    </div>
+  </div>
+</div><!-- /contact -->
+
+
+<!-- ========== TRACK YOUR ORDER PAGE ========== -->
+<div id="track" class="page">
+  <div class="page-hero">
+    <h1>TRACK YOUR ORDER</h1>
+    <p>Real-time order tracking</p>
+  </div>
+  <div class="track-section">
+    <p class="track-intro">Enter your order number and email address to get real-time updates on your shipment. Orders typically ship within 1–3 business days.</p>
+    <form onsubmit="trackOrder(event)">
+      <div class="track-form-group">
+        <input type="text" placeholder="ORDER NUMBER (e.g. #1234)" id="orderNumber">
+      </div>
+      <div class="track-form-group">
+        <input type="email" placeholder="EMAIL ADDRESS" id="trackEmail">
+      </div>
+      <button type="submit" class="track-submit">TRACK ORDER</button>
+    </form>
+    <div class="track-info">
+      <div class="track-feature">
+        <div class="track-feature-icon">📦</div>
+        <p class="track-feature-title">Fast Shipping</p>
+        <p class="track-feature-text">Orders dispatched within 1–3 business days worldwide</p>
+      </div>
+      <div class="track-feature">
+        <div class="track-feature-icon">🌍</div>
+        <p class="track-feature-title">50+ Countries</p>
+        <p class="track-feature-text">Free shipping on orders above €79 to over 50 countries</p>
+      </div>
+      <div class="track-feature">
+        <div class="track-feature-icon">🔒</div>
+        <p class="track-feature-title">Secure Orders</p>
+        <p class="track-feature-text">All transactions secured with industry-standard encryption</p>
+      </div>
+    </div>
+  </div>
+</div><!-- /track -->
+
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <p class="footer-brand-name">UMMAHRISE</p>
+      <p class="footer-tagline">Premium Islamic streetwear for the Muslim community worldwide. Make Ummah Rise Again.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/oneummah.label" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">Quick Links</p>
+      <ul>
+        <li><a href="ummahrise-clone.html">Home</a></li>
+        <li><a href="catalog.html">Catalog</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="track.html">Track Your Order</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">Policies</p>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">Support</p>
+      <ul>
+        <li><a href="contact.html">Contact Information</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="track.html">Order Tracking</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026, UMMAHRISE</p>
+    <div class="footer-bottom-row">
+      <div class="footer-links">
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of service</a>
+        <a href="#">Shipping policy</a>
+      </div>
+      <div class="payment-icons">
+        <span class="payment-icon">UPI</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Page navigation
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const el = document.getElementById(id);
+    if (el) { el.classList.add('active'); window.scrollTo({top: 0, behavior: 'smooth'}); }
+  }
+
+  // Cart
+  let cartCount = 0;
+  function openCart() {
+    document.getElementById('cartDrawer').classList.add('open');
+    document.getElementById('cartOverlay').classList.add('open');
+  }
+  function closeCart() {
+    document.getElementById('cartDrawer').classList.remove('open');
+    document.getElementById('cartOverlay').classList.remove('open');
+  }
+  function addToCart(e) {
+    e.stopPropagation();
+    cartCount++;
+    document.querySelector('.cart-count').textContent = cartCount;
+    openCart();
+  }
+
+  // Mobile nav
+  function toggleMobileNav() {
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+
+  // Catalog filter
+  function setFilter(btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // Contact form
+  function submitContact(e) {
+    e.preventDefault();
+    document.getElementById('formSuccess').classList.add('show');
+    e.target.reset();
+    e.target.style.display = 'none';
+  }
+
+  // Track order
+  function trackOrder(e) {
+    e.preventDefault();
+    const num = document.getElementById('orderNumber').value.trim();
+    const email = document.getElementById('trackEmail').value.trim();
+    if (!num || !email) { alert('Please enter your order number and email.'); return; }
+    alert('Searching for order ' + num + '...\n\nFor full live tracking, please visit 17track.net with your tracking number.');
+  }
+</script>
+</body>
+</html>
