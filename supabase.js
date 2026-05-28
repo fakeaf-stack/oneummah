@@ -270,7 +270,10 @@ async function mountProductLists() {
 		})
 
 		document.querySelectorAll('.catalog-grid').forEach(function (container) {
-			if (container.closest('.page')) {
+			const page = container.closest('.page')
+			// If the grid is inside a page other than the homepage, render the compact home-style cards.
+			// If the grid is on the homepage or in a standalone catalog page, render the catalog-style `article.card` markup.
+			if (page && page.id && page.id !== 'home') {
 				renderHomeGrid(container, products)
 				const filterBar = container.parentElement.querySelector('.catalog-filters')
 				if (filterBar) {

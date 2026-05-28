@@ -926,13 +926,43 @@
     color: var(--white);
   }
   .catalog-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    padding: 0 2px 80px;
-    max-width: 1400px;
+    max-width: 1000px;
     margin: 0 auto;
+    padding: 0 24px 70px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(260px, 360px));
+    gap: 24px;
+    justify-content: center;
   }
+  .card { border: 1px solid var(--light-gray); background: var(--white); }
+  .thumb {
+    aspect-ratio: 3/4;
+    background: linear-gradient(160deg, #1a1a1a 0%, #2a2a2a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .thumb-text {
+    color: rgba(255,255,255,0.12);
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3vw, 40px);
+    letter-spacing: 0.06em;
+  }
+  .meta { padding: 14px 16px 18px; }
+  .name {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .price { display: flex; gap: 8px; align-items: center; }
+  .old { color: var(--mid-gray); text-decoration: line-through; font-size: 11px; }
+  .new { font-weight: 700; font-size: 13px; }
 
   /* Contact page */
   .contact-section {
@@ -1208,13 +1238,9 @@
     <div class="hero-lines"></div>
     <div class="hero-content">
       <p class="hero-eyebrow">Islamic Streetwear</p>
-      <h1 class="hero-title">MAKE<br><em>UMMAH</em><br>RISE AGAIN.</h1>
+      <h1 class="hero-title">quote<br><em>quote</em><br>quote.</h1>
       <p class="hero-sub">Premium clothing for the Muslim community</p>
       <a href="catalog.html" class="hero-cta">SHOP NOW</a>
-    </div>
-    <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      <span>Scroll</span>
     </div>
   </section>
 
@@ -1224,117 +1250,16 @@
     <h2 class="section-title">COLLECTION</h2>
   </div>
 
-  <div class="products-grid">
-    <!-- Product 1 -->
-    <div class="product-card" onclick="window.location.href='catalog.html'">
-      <div class="product-placeholder ph-1"><span class="ph-text">TAWAKKUL</span></div>
-      <div class="product-badge">SALE</div>
-      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
-    </div>
-    <div class="product-info">
-      <p class="product-name">TAWAKKUL T-shirt | Oversized [Short Cut]</p>
-      <div class="product-prices"><span class="price-original">€32,99</span><span class="price-sale">€29,99</span></div>
-    </div>
-
-    <!-- Product 2 -->
-    <div class="product-card" onclick="window.location.href='catalog.html'">
-      <div class="product-placeholder ph-2"><span class="ph-text">WARRIOR</span></div>
-      <div class="product-badge">SALE</div>
-      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
-    </div>
-    <div class="product-info">
-      <p class="product-name">WARRIOR T-shirt | Oversized [Short Cut]</p>
-      <div class="product-prices"><span class="price-original">€32,99</span><span class="price-sale">€29,99</span></div>
-    </div>
-
-    <!-- Product 3 -->
-    <div class="product-card" onclick="window.location.href='catalog.html'">
-      <div class="product-placeholder ph-3"><span class="ph-text">TAWAKKUL</span></div>
-      <div class="product-badge">SALE</div>
-      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
-    </div>
-    <div class="product-info">
-      <p class="product-name">TAWAKKUL T-shirt | Oversized+ [Long Cut]</p>
-      <div class="product-prices"><span class="price-original">€34,99</span><span class="price-sale">€32,99</span></div>
-    </div>
-
-    <!-- Product 4 -->
-    <div class="product-card" onclick="window.location.href='catalog.html'">
-      <div class="product-placeholder ph-4"><span class="ph-text">WARRIOR</span></div>
-      <div class="product-badge">SALE</div>
-      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
-    </div>
-    <div class="product-info">
-      <p class="product-name">WARRIOR T-shirt | Oversized+ [Long Cut]</p>
-      <div class="product-prices"><span class="price-original">€34,99</span><span class="price-sale">€32,99</span></div>
-    </div>
-
-    <!-- Product 5 -->
-    <div class="product-card" onclick="window.location.href='catalog.html'">
-      <div class="product-placeholder ph-5"><span class="ph-text">RISE</span></div>
-      <div class="product-badge">SALE</div>
-      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
-    </div>
-    <div class="product-info">
-      <p class="product-name">RISE T-shirt | Oversized [Short Cut]</p>
-      <div class="product-prices"><span class="price-original">€32,99</span><span class="price-sale">€29,99</span></div>
-    </div>
-
-    <!-- Product 6 -->
-    <div class="product-card" onclick="window.location.href='catalog.html'">
-      <div class="product-placeholder ph-6"><span class="ph-text">ISLAM</span></div>
-      <div class="product-badge">SALE</div>
-      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
-    </div>
-    <div class="product-info">
-      <p class="product-name">ISLAM T-shirt | Oversized [Short Cut]</p>
-      <div class="product-prices"><span class="price-original">€32,99</span><span class="price-sale">€29,99</span></div>
-    </div>
-
-    <!-- Product 7 -->
-    <div class="product-card" onclick="window.location.href='catalog.html'">
-      <div class="product-placeholder ph-7"><span class="ph-text">RISE</span></div>
-      <div class="product-badge">SALE</div>
-      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
-    </div>
-    <div class="product-info">
-      <p class="product-name">RISE T-shirt | Oversized+ [Long Cut]</p>
-      <div class="product-prices"><span class="price-original">€34,99</span><span class="price-sale">€32,99</span></div>
-    </div>
-
-    <!-- Product 8 -->
-    <div class="product-card" onclick="window.location.href='catalog.html'">
-      <div class="product-placeholder ph-8"><span class="ph-text">ISLAM</span></div>
-      <div class="product-badge">SALE</div>
-      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
-    </div>
-    <div class="product-info">
-      <p class="product-name">ISLAM T-shirt | Oversized+ [Long Cut]</p>
-      <div class="product-prices"><span class="price-original">€34,99</span><span class="price-sale">€32,99</span></div>
-    </div>
-
-    <!-- Product 9 -->
-    <div class="product-card" onclick="window.location.href='catalog.html'">
-      <div class="product-placeholder ph-9"><span class="ph-text">ISLAM HOODIE</span></div>
-      <div class="product-badge">SALE</div>
-      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
-    </div>
-    <div class="product-info">
-      <p class="product-name">ISLAM Hoodie | Premium Oversized</p>
-      <div class="product-prices"><span class="price-original">€64,99</span><span class="price-sale">€49,99</span></div>
-    </div>
-
-    <!-- Product 10 -->
-    <div class="product-card" onclick="window.location.href='catalog.html'">
-      <div class="product-placeholder ph-10"><span class="ph-text">UMMAH HOODIE</span></div>
-      <div class="product-badge">SALE</div>
-      <div class="product-overlay"><button class="add-to-cart-btn" onclick="addToCart(event)">ADD TO CART</button></div>
-    </div>
-    <div class="product-info">
-      <p class="product-name">UMMAH Hoodie | Premium Oversized</p>
-      <div class="product-prices"><span class="price-original">€64,99</span><span class="price-sale">€49,99</span></div>
-    </div>
-  </div>
+  <section class="catalog-grid">
+    <article class="card">
+      <div class="thumb"><span class="thumb-text">PRODUCT ALPHA</span></div>
+      <div class="meta"><p class="name">Alpha Tee | Placeholder</p><p class="price"><span class="old">EUR 0.00</span><span class="new">EUR 9.99</span></p></div>
+    </article>
+    <article class="card">
+      <div class="thumb"><span class="thumb-text">PRODUCT BETA</span></div>
+      <div class="meta"><p class="name">Beta Tee | Placeholder</p><p class="price"><span class="old">EUR 0.00</span><span class="new">EUR 14.99</span></p></div>
+    </article>
+  </section>
 
   <div class="view-all-wrap">
     <a href="catalog.html" class="view-all-btn">VIEW ALL PRODUCTS</a>
